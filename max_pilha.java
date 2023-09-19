@@ -1,0 +1,45 @@
+/**
+ * Escreva um programa que retorne o maior elemento de uma pilha.
+ * Entrada: Seu programa deve ler uma linha da entrada padrão representando os elementos a serem adicionados na pilha.
+ * Você só pode usar push, pop e outra estrutura auxiliar. A pilha deve manter a sua configuração inicial após a execução do seu algoritmo.
+ * Saída: Seu programa deve imprimir o maior elemento da pilha.
+ */
+
+import java.util.Scanner;
+import java.util.Stack;
+
+public class max_pilha {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        // lê os elementos da pilha
+        String[] elementosPilha = sc.nextLine().split(" ");
+
+        // cria pilha para armazenar elementos
+        Stack<Integer> stack = new Stack<>();
+        // Inicia um loop para preencher a pilha com elementos até o índice especificado.
+        for (String elemento: elementosPilha) {
+            //Converte o elemento de elementosPilha[i] em um número inteiro
+            int valor = Integer.parseInt(elemento);
+            //add o valor na pilha
+            stack.push(valor);
+        }
+
+        // cria pilha para armazenar elementos
+        Stack<Integer> maxStack = new Stack<>();
+        // Inicia outro loop para calcular o máximo até o índice especificado.
+        for (int i = 0; i <= stack.size(); i++) {
+            //Aqui, desempilhamos o elemento do topo da pilha original (stack) e o armazenamos na variável 
+            int valor = stack.pop();
+            // Verifica se a pilha maxStack está vazia ou se o valor é maior ou igual 
+            // ao elemento no topo da pilha maxStack. Se for verdadeiro, empurra o valor para maxStack.
+            if (maxStack.isEmpty() || valor >= maxStack.peek()) {
+                maxStack.push(valor);
+            }
+        }
+        //obtem o maior valor e retorna ele
+        int maxElement = maxStack.peek();
+        System.out.println(maxElement);
+        
+        sc.close();
+    }
+}
